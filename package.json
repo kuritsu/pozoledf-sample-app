@@ -1,0 +1,30 @@
+{
+  "name": "pozoledf-sample-app",
+  "version": "1.0.0",
+  "description": "PozoleDF Sample Express App for K8S",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuritsu/pozoledf-sample-app.git"
+  },
+  "keywords": [
+    "pozoledf",
+    "sample",
+    "app",
+    "nodejs",
+    "k8s"
+  ],
+  "author": "Jeffrey Alvarez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuritsu/pozoledf-sample-app/issues"
+  },
+  "homepage": "https://github.com/kuritsu/pozoledf-sample-app#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

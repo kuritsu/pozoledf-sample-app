@@ -1,2 +1,5 @@
 # pozoledf-sample-app
-Sample NodeJs Application with PozoleDF pipeline and config.
+
+[PozoleDF](https://github.com/kuritsu/pozoledf) Sample NodeJS Application prepared for K8S and Jenkins pipeline.
+
+
