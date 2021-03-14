@@ -3,7 +3,12 @@ pipeline{
 
   stages{
     stage("get creds for docker registry") {
-      agent { docker { image 'banst/awscli:latest' } }
+      agent {
+        docker {
+          image 'banst/awscli:latest'
+          args  '--entrypoint=/bin/sh'
+        }
+      }
       steps{
           sh """
           # This is using an Amazon ECR docker registry, change this to your use case
