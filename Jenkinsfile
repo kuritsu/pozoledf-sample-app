@@ -1,6 +1,6 @@
-agent any
-
 pipeline{
+  agent any
+
   stages{
     stage("get creds for docker registry") {
       agent { docker { image 'banst/awscli:latest' } }
