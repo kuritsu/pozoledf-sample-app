@@ -24,11 +24,12 @@ pipeline {
         DOCKER_REGISTRY = credentials("docker-registry-fqdn")
       }
       steps {
-          sh """
-          cat ecr-pass|docker login --username AWS --password-stdin $DOCKER_REGISTRY
+          sh '''
+          docker_password=`cat ecr-pass`
+          docker login --username AWS -p $docker_password $DOCKER_REGISTRY
           docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
-          """
+          '''
       }
     }
     stage("prepare release"){
@@ -36,7 +37,7 @@ pipeline {
         JENKINS_GITHUB_CREDS = credentials("jenkins-github-creds")
       }
       steps {
-          sh """
+          sh '''
           git clone https://github.com/kuritsu/pozoledf-sample-app-deployment.git
           cd pozoledf-sample-app-deployment
           git checkout v$VERSION
@@ -47,7 +48,7 @@ pipeline {
           git commit -m "Create release $VERSION"
           git remote set-url origin https://$JENKINS_GITHUB_CREDS@github.com/kuritsu/pozoledf-sample-app-deployment.git
           git push origin
-          """
+          '''
       }
     }
   }
