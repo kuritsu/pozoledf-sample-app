@@ -22,6 +22,7 @@ pipeline {
     stage("build"){
       environment {
         DOCKER_REGISTRY = credentials("docker-registry-fqdn")
+        docker_password = credentials("docker-registry-fqdn")
       }
       steps {
           sh '''
