@@ -6,6 +6,7 @@ pipeline{
       agent {
         docker {
           image "banst/awscli:latest"
+          args "--entrypoint=/bin/sh"
         }
       }
       steps{
