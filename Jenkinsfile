@@ -1,12 +1,11 @@
 pipeline{
-  agent any
+  agent none
 
   stages{
     stage("get creds for docker registry") {
       agent {
         docker {
-          image 'banst/awscli:latest'
-          args  '--entrypoint=/bin/sh'
+          image "banst/awscli:latest"
         }
       }
       steps{
@@ -19,8 +18,8 @@ pipeline{
     stage("build"){
       agent any
       environment {
-        DOCKER_REGISTRY = credentials('docker-registry-fqdn')
-        ORG = credentials('org')
+        DOCKER_REGISTRY = credentials("docker-registry-fqdn")
+        ORG = "myorg"
       }
       steps{
           sh """
