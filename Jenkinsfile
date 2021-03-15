@@ -20,13 +20,12 @@ pipeline{
       agent any
       environment {
         DOCKER_REGISTRY = credentials("docker-registry-fqdn")
-        ORG = "myorg"
       }
       steps {
           sh """
           cat ecr-pass|docker login --username AWS --password-stdin $DOCKER_REGISTRY
-          docker build -t $DOCKER_REGISTRY/$ORG/pozoledf-sample-app:1.0.$BUILD_NUMBER .
-          docker push $DOCKER_REGISTRY/$ORG/pozoledf-sample-app:1.0.$BUILD_NUMBER
+          docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:1.0.$BUILD_NUMBER .
+          docker push $DOCKER_REGISTRY/pozoledf-sample-app:1.0.$BUILD_NUMBER
           """
       }
     }
