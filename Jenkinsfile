@@ -5,14 +5,14 @@ pipeline{
     stage("get creds for docker registry") {
       agent {
         docker {
-          image "banst/awscli:latest"
-          args "--entrypoint=/bin/sh"
+          image "centos:latest"
         }
       }
       steps{
           sh """
           # This is using an Amazon ECR docker registry, change this to your use case
-          /root/.local/bin/aws ecr get-login-password --region us-west-2 >ecr-pass
+          yum makecache && yum install python3-pip && pip3 install awscli
+          aws ecr get-login-password --region us-west-2 >ecr-pass
           """
       }
     }
