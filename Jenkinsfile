@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image "kuritsu/pozoledf-jenkins-util:latest"
-      args "--network host -u root --privileged -v /var/run/docker.sock:/var/run/docker.sock"
+      args "--entrypoint='' --network host -u root --privileged -v /var/run/docker.sock:/var/run/docker.sock"
     }
   }
 
