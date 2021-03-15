@@ -6,7 +6,7 @@ pipeline{
       agent {
         docker {
           image "centos:latest"
-          args "--network host"
+          args "--network host -u root"
         }
       }
       steps{
