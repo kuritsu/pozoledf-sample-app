@@ -11,7 +11,7 @@ pipeline{
       steps{
           sh """
           # This is using an Amazon ECR docker registry, change this to your use case
-          aws ecr get-login-password --region us-west-2 >ecr-pass
+          /root/.local/bin/aws ecr get-login-password --region us-west-2 >ecr-pass
           """
       }
     }
@@ -21,7 +21,7 @@ pipeline{
         DOCKER_REGISTRY = credentials("docker-registry-fqdn")
         ORG = "myorg"
       }
-      steps{
+      steps {
           sh """
           cat ecr-pass|docker login --username AWS --password-stdin $DOCKER_REGISTRY
           docker build -t $DOCKER_REGISTRY/$ORG/pozoledf-sample-app:1.0.$BUILD_NUMBER .
