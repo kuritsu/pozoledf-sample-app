@@ -17,7 +17,7 @@ pipeline {
           sh '''
           # This is using an Amazon ECR docker registry, change this to your use case
           set +x
-          pass=`aws ecr get-login-password --region us-west-2``
+          pass=`aws ecr get-login-password --region us-west-2`
           docker login --username AWS -p $pass $DOCKER_REGISTRY
           set -x
           '''
