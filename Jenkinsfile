@@ -8,26 +8,25 @@ pipeline {
 
   environment {
     VERSION = "1.0.${BUILD_NUMBER}"
+    DOCKER_REGISTRY = credentials("docker-registry-fqdn")
   }
 
   stages{
     stage("get creds for docker registry") {
       steps{
-          sh """
+          sh '''
           # This is using an Amazon ECR docker registry, change this to your use case
-          aws ecr get-login-password --region us-west-2 >ecr-pass
-          """
+          set +x
+          pass=`aws ecr get-login-password --region us-west-2``
+          docker login --username AWS -p $pass $DOCKER_REGISTRY
+          set -x
+          '''
       }
     }
     stage("build"){
-      environment {
-        DOCKER_REGISTRY = credentials("docker-registry-fqdn")
-        docker_password = credentials("docker-registry-fqdn")
-      }
+      
       steps {
           sh '''
-          docker_password=`cat ecr-pass`
-          docker login --username AWS -p $docker_password $DOCKER_REGISTRY
           docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
           '''
