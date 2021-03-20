@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image "kuritsu/pozoledf-jenkins-util:latest"
-      args "--entrypoint='' --network host --privileged -v /var/run/docker.sock:/var/run/docker.sock"
+      args "--entrypoint='' --network host -u root --privileged -v /var/run/docker.sock:/var/run/docker.sock"
     }
   }
 
@@ -16,12 +16,13 @@ pipeline {
     stage("build"){
       steps {
         sh '''
-          # This is using an Amazon ECR, change this to your use case
+          docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
+
           set +x
+          # This is using an Amazon ECR, change this to your use case
           pass=`aws ecr get-login-password --region us-west-2`
           docker login --username AWS -p $pass $DOCKER_REGISTRY
           set -x
-          docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
         '''
       }
