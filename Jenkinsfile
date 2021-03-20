@@ -14,9 +14,7 @@ pipeline {
 
   stages{
     stage("build"){
-      agent {
-        any
-      }
+      agent any
       steps {
         sh '''
           # This is using an Amazon ECR, change this to your use case
