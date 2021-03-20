@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image "kuritsu/pozoledf-jenkins-util:latest"
-      args "--entrypoint='' --network host"
+      args "--entrypoint='' --network host -u root --privileged -v /var/run/docker.sock:/var/run/docker.sock"
     }
   }
 
@@ -14,7 +14,6 @@ pipeline {
 
   stages{
     stage("build"){
-      agent any
       steps {
         sh '''
           # This is using an Amazon ECR, change this to your use case
