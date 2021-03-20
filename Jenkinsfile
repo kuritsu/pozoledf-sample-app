@@ -26,8 +26,7 @@ pipeline {
         sh '''
           set +x
           # This is using an Amazon ECR, change this to your use case
-          pass=`aws ecr get-login-password --region us-west-2`
-          docker login --username AWS -p $pass $DOCKER_REGISTRY
+          eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
           set -x
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
         '''
