@@ -17,7 +17,13 @@ pipeline {
       steps {
         sh '''
           docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
-
+        '''
+      }
+    }
+    stage("publish image"){
+      agent any
+      steps {
+        sh '''
           set +x
           # This is using an Amazon ECR, change this to your use case
           pass=`aws ecr get-login-password --region us-west-2`
