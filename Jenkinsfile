@@ -24,10 +24,10 @@ pipeline {
       agent any
       steps {
         sh '''
-          set +x
-          # This is using an Amazon ECR, change this to your use case
-          eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
-          set -x
+          // set +x
+          // # This is using an Amazon ECR, change this to your use case
+          // eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
+          // set -x
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
         '''
       }
