@@ -37,7 +37,7 @@ pipeline {
         sh '''
           git clone https://github.com/kuritsu/pozoledf-sample-app-deployment.git
           cd pozoledf-sample-app-deployment
-          git checkout v$VERSION
+          git checkout -b v$VERSION
           kustomize edit set image registry.mycompany.com/pozoledf-sample-app=$DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
           git config user.name "jenkins"
           git config user.email "jenkins@pozoledf.com"
