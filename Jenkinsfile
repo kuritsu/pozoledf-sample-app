@@ -41,7 +41,9 @@ pipeline {
           git checkout -b v$VERSION
           kustomize edit set image registry.mycompany.com/pozoledf-sample-app=$DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
           jq_exp=".latest=\"$VERSION\""
-          cat release.json|jq "$jq_exp" >release.json
+          cat release.json|jq "$jq_exp" >release.copy.json
+          cp -u release.copy.json release.json
+          rm -rf release.copy.json
           git config user.name "jenkins"
           git config user.email "jenkins@pozoledf.com"
           git add .
