@@ -35,6 +35,7 @@ pipeline {
     stage("prepare release"){
       steps {
         sh '''
+          rm -rf pozoledf-sample-app-deployment
           git clone https://github.com/kuritsu/pozoledf-sample-app-deployment.git
           cd pozoledf-sample-app-deployment
           git checkout -b v$VERSION
