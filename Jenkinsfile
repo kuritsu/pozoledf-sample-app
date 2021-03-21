@@ -40,8 +40,7 @@ pipeline {
           cd pozoledf-sample-app-deployment
           git checkout -b v$VERSION
           kustomize edit set image registry.mycompany.com/pozoledf-sample-app=$DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
-          jq_exp=".latest=\"$VERSION\""
-          cat release.json|jq "$jq_exp" >release.copy.json
+          cat release.json|jq '.latest="'$VERSION'"' >release.copy.json
           cp -u release.copy.json release.json
           rm -rf release.copy.json
           git config user.name "jenkins"
