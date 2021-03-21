@@ -40,6 +40,7 @@ pipeline {
           cd pozoledf-sample-app-deployment
           git checkout -b v$VERSION
           kustomize edit set image registry.mycompany.com/pozoledf-sample-app=$DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
+          cat release.json|jq ".latest=\"$VERSION\"" >release.json
           git config user.name "jenkins"
           git config user.email "jenkins@pozoledf.com"
           git add .

@@ -12,4 +12,10 @@ RUN curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/
 
 RUN ln -s /opt/bin/kustomize /usr/bin/
 
+RUN curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/hab/install.sh | bash
+
+RUN hab license accept
+
+RUN apt-get install -y jq
+
 ENTRYPOINT [ "/bin/bash" ]
