@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-RUN apt-get update && apt-get install -y git python3-pip docker.io && pip3 install awscli && apt-get clean -y
+RUN apt-get update && apt-get install -y curl git python3-pip docker.io && pip3 install awscli && apt-get clean -y
 
 RUN apt-get clean -y
 

@@ -45,7 +45,7 @@ pipeline {
           git add .
           git commit -m "Create release $VERSION"
           git remote set-url origin https://$JENKINS_GITHUB_CREDS@github.com/kuritsu/pozoledf-sample-app-deployment.git
-          git push origin
+          git push --set-upstream origin v$VERSION
         '''
       }
     }
