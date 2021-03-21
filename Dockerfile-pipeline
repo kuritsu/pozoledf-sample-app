@@ -1,6 +1,8 @@
-FROM centos:7
+FROM ubuntu:focal
 
-RUN yum makecache && yum install -y git python3-pip docker && pip3 install awscli
+RUN apt-get update && apt-get install -y git python3-pip docker.io && pip3 install awscli && apt-get clean -y
+
+RUN apt-get clean -y
 
 RUN mkdir -p /opt/bin
 
