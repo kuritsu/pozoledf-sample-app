@@ -39,7 +39,9 @@ pipeline {
           git clone https://github.com/kuritsu/pozoledf-sample-app-deployment.git
           cd pozoledf-sample-app-deployment
           git checkout -b v$VERSION
+          cd habitat/config
           kustomize edit set image registry.mycompany.com/pozoledf-sample-app=$DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
+          cd ../..
           cat release.json|jq '.dev="'$VERSION'"' >release.copy.json
           cp -u release.copy.json release.json
           rm -rf release.copy.json
