@@ -16,7 +16,7 @@ pipeline {
     stage("build"){
       steps {
         sh '''
-          docker build -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
+          docker build --network host -t $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION .
         '''
       }
     }
