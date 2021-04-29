@@ -9,6 +9,7 @@ pipeline {
   environment {
     VERSION = "1.0.${BUILD_NUMBER}"
     DOCKER_REGISTRY = credentials("docker-registry-fqdn")
+    DOCKER_LOGIN_CMD = credentials("docker-login-cmd")
     JENKINS_GITHUB_CREDS = credentials("jenkins-github-creds")
   }
 
@@ -25,7 +26,8 @@ pipeline {
         sh '''
           set +x
           # This is using an Amazon ECR, change this to your use case
-          eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
+          # eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
+          $DOCKER_LOGIN_CMD
           set -x
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
         '''
