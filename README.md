@@ -2,6 +2,26 @@
 
 [PozoleDF](https://github.com/kuritsu/pozoledf) Sample NodeJS Application prepared for K8S and Jenkins pipeline.
 
+## Requirements
+
+- Docker
+- NodeJS 12 or superior
+
+## Running and testing
+
+Use the following command to run the app:
+
+```bash
+$ npm start
+```
+
+Use the following command to check the published endpoint (once the app is running):
+
+```bash
+$ curl http://localhost:3000/health
+OK!
+```
+
 ## Building
 
 Add the project to the Jenkins server installed following the instructions at
@@ -9,8 +29,8 @@ https://github.com/kuritsu/pozoledf-chef-repo.
 
 Notice that the following Jenkins credentials are required to get a successful build:
 
-- docker-registry-fqdn: Text with the fully qualified Docker Registry address. Ex. `myregistry.docker.com:8081`. 
-- jenkins-github-cred: User and password from GitHub. Instead of using a personal password, you should use a PAT (Personal Access Token), check [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) for more details. It requires only the `repo` and `user` scopes.
+- `docker-registry-fqdn`: Text with the host name of your Docker Registry. Ex. `myregistry.docker.com`.
+- `jenkins-github-creds`: User and password from GitHub. Instead of using a personal password, you should use a PAT (Personal Access Token), check [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) for more details. It requires only the `repo` and `user` scopes.
 
 The docker image we use in Jenkins with all the tools required can be found in the
 `Dockerfile-pipeline` file. It is hosted already in Docker Hub with the name `kuritsu/pozoledf-jenkins-util:latest` as can be noted in the Jenkinsfile.
