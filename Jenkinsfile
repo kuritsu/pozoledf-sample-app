@@ -27,7 +27,7 @@ pipeline {
           set +x
           # This is using an Amazon ECR, change this to your use case
           # eval $(aws ecr get-login --no-include-email --region us-west-2 | sed 's|https://||')
-          $DOCKER_LOGIN_CMD
+          eval "$DOCKER_LOGIN_CMD"
           set -x
           docker push $DOCKER_REGISTRY/pozoledf-sample-app:$VERSION
         '''
