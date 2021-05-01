@@ -30,6 +30,8 @@ https://github.com/kuritsu/pozoledf-chef-repo.
 Notice that the following Jenkins credentials are required to get a successful build:
 
 - `docker-registry-fqdn`: Text with the host name of your Docker Registry. Ex. `myregistry.docker.com`.
+- `docker-login-cmd`: The Docker login command in case you use a private registry, for example:
+  `docker login myregistry.private.com -u admin -p "MyPassw0rd"`.
 - `jenkins-github-creds`: User and password from GitHub. Instead of using a personal password, you should use a PAT (Personal Access Token), check [here](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) for more details. It requires only the `repo` and `user` scopes.
 
 The docker image we use in Jenkins with all the tools required can be found in the
