@@ -16,6 +16,8 @@ RUN curl https://raw.githubusercontent.com/habitat-sh/habitat/master/components/
 
 RUN hab license accept
 
+RUN hab pkg install core/hab-studio
+
 RUN apt-get install -y jq
 
 ENTRYPOINT [ "/bin/bash" ]
